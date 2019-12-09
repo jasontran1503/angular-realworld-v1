@@ -88,6 +88,13 @@
                     </div>
                 </form>
 
+                <p *ngIf="!token">
+                    <a [routerLink]="['/','login']" routerLinkActive="router-link-active" >Sign in</a>
+                    or
+                    <a [routerLink]="['/','register']" routerLinkActive="router-link-active" > sign up</a>
+                    to add comments on this article.
+                </p>
+
                 <div class="card" *ngFor="let comment of comments; let index = index">
                     <div class="card-block">
                         <p class="card-text">{{ comment?.body }}</p>
