@@ -1,0 +1,119 @@
+<div class="profile-page">
+    <div class="user-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 offset-md-1">
+                    <img [src]="userProfile?.image" class="user-img" />
+                    <h4>{{ userProfile?.username }}</h4>
+                    <p>{{ userProfile?.bio }}</p>
+                    <button class="btn btn-sm btn-outline-secondary action-btn" [routerLink]="['/', 'settings']"
+                        *ngIf="userProfile?.username === currentUserName">
+                        <i class="ion-gear-a"></i>
+                        &nbsp;Edit Profile Settings
+                    </button>
+
+                    <app-follow-button [userClicked]="userNameClicked" [following]="following"
+                    class="pull-xs-right"
+                        (toggleFollow)="onFollow($event)" *ngIf="(userProfile?.username !== currentUserName)">
+                    </app-follow-button>
+                    <!-- <button class="btn btn-sm btn-outline-secondary action-btn"
+                        *ngIf="(userProfile?.username !== currentUserName) && !following" (click)="followUser()">
+                        <i class="ion-plus-round"></i>
+                        &nbsp; Follow {{ userProfile?.username }}
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary action-btn"
+                        *ngIf="(userProfile?.username !== currentUserName) && following" (click)="unfollowUser()">
+                        <i class="ion-plus-round"></i>
+                        &nbsp; Unfollow {{ userProfile?.username }}
+                    </button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="articles-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item" style="cursor: pointer;">
+                            <a class="nav-link " (click)="showMyArticles()" [class.active]="checkArticles == 1">My
+                                Articles</a>
+                        </li>
+                        <li class="nav-item" style="cursor: pointer;">
+                            <a class="nav-link active" (click)="showFavoritedArticles()"
+                                [class.active]="checkArticles == 2">Favorited Articles</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- my articles -->
+                <div *ngIf="checkArticles == 1">
+                        <app-lists-articles [checkArticles]="checkArticles"
+                        [userNameClicked]="userNameClicked">
+                       </app-lists-articles>
+                    <!-- <div class="article-preview" *ngFor="let myArticle of myArticles">
+                        <div class="article-meta">
+                            <a [routerLink]="['/','profile',myArticle.author.username]"><img
+                                    [src]="myArticle.author.image" /></a>
+                            <div class="info">
+                                <a [routerLink]="['/','profile',myArticle.author.username]"
+                                    class="author">{{ myArticle.author.username }}</a>
+                                <span class="date">{{ myArticle.author.createdAt | date }}</span>
+                            </div> -->
+                            <!-- <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                                <i class="ion-heart"></i> {{ myArticle.favoritesCount }}
+                            </button> -->
+                        <!-- </div>
+                        <a [routerLink]="['/','article',myArticle.slug]" class="preview-link">
+                            <h1>{{ myArticle.title }}</h1>
+                            <p>{{ myArticle.description }}</p>
+                            <span>Read more...</span>
+                            <ul class="tag-list">
+                                <li class="tag-default tag-pill tag-outline" *ngFor="let tag of myArticle.tagList">
+                                    {{ tag }}</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item" *ngFor="let index of numPage" style="cursor: pointer;"
+                            [ngClass]="numClicked == index ? 'active' : ''">
+                            <a class="page-link" (click)="clickPage(index)">{{ index + 1 }}</a></li>
+                    </ul> -->
+                </div>
+                <!-- favorited articles -->
+                <div *ngIf="checkArticles == 2">
+                        <app-lists-articles [checkArticles]="checkArticles"
+                        [userNameClicked]="userNameClicked">
+                       </app-lists-articles>
+                    <!-- <div class="article-preview" *ngFor="let favoritedArticle of favoritedArticles">
+                        <div class="article-meta">
+                            <a [routerLink]="['/','profile',favoritedArticle.author.username]"><img
+                                    [src]="favoritedArticle.author.image" /></a>
+                            <div class="info">
+                                <a [routerLink]="['/','profile',favoritedArticle.author.username]"
+                                    class="author">{{ favoritedArticle.author.username }}</a>
+                                <span class="date">{{ favoritedArticle.author.createdAt | date }}</span>
+                            </div> -->
+                            <!-- <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                                <i class="ion-heart"></i> {{ favoritedArticle.favoritesCount }}
+                            </button> -->
+                        <!-- </div>
+                        <a [routerLink]="['/','article',favoritedArticle.slug]" class="preview-link">
+                            <h1>{{ favoritedArticle.title }}</h1>
+                            <p>{{ favoritedArticle.description }}</p>
+                            <span>Read more...</span>
+                            <ul class="tag-list">
+                                <li class="tag-default tag-pill tag-outline"
+                                    *ngFor="let tag of favoritedArticle.tagList">{{ tag }}</li>
+                            </ul>
+                        </a>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item" *ngFor="let index of numPage" style="cursor: pointer;"
+                            [ngClass]="numClicked == index ? 'active' : ''">
+                            <a class="page-link" (click)="clickPage(index)">{{ index + 1 }}</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

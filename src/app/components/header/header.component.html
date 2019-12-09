@@ -1,0 +1,63 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+      <a class="navbar-brand" routerLink="home">conduit</a>
+
+      <ul class="nav navbar-nav pull-xs-right" *ngIf="!authService.isAuth ">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="login" routerLinkActive="active">Sign in</a>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav pull-xs-right" *ngIf="authService.isAuth">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="editor" routerLinkActive="active">
+                  <i class="ion-compose"></i>&nbsp;New Post
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="settings" routerLinkActive="active">
+                  <i class="ion-gear-a"></i>&nbsp;Settings
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/','profile', currentUserName]"
+                  routerLinkActive="active">
+                  <img [src]="currentUserImage" class="user-pic">
+                  {{ currentUserName }}
+                </a>
+          </li>
+      </ul>
+
+
+      <!-- <ul class="nav navbar-nav pull-xs-right">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="authenService.isAuth">
+              <a class="nav-link" routerLink="editor" routerLinkActive="active">
+                  <i class="ion-compose"></i>&nbsp;New Post
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="authenService.isAuth">
+              <a class="nav-link" routerLink="settings" routerLinkActive="active">
+                  <i class="ion-gear-a"></i>&nbsp;Settings
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="!authenService.isAuth">
+              <a class="nav-link" routerLink="login" routerLinkActive="active">Sign in</a>
+          </li>
+          <li class="nav-item" *ngIf="authenService.isAuth">
+              <a class="nav-link" [routerLink]="['/','profile', currentUserName]"
+                  routerLinkActive="active">
+                  <img [src]="currentUserImage" class="user-pic">
+                  {{ currentUserName }}</a>
+          </li>
+      </ul> -->
+  </div>
+</nav>

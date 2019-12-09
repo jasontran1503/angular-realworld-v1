@@ -1,0 +1,30 @@
+<div class="article-preview" *ngFor="let article of listArticles">
+    <div class="article-meta">
+        <a [routerLink]="['/','profile', article.author.username]">
+            <img [src]="article.author?.image" /></a>
+        <div class="info">
+            <a [routerLink]="['/','profile', article.author.username]" class="author">{{ article.author.username }}</a>
+            <span class="date">{{ article.createdAt | date }}</span>
+        </div>
+        <app-favorite-button [slug]="article.slug" [favoritesCount]="article.favoritesCount"
+                [favorited]="article.favorited" (toggleFavorite)="onFavorite($event, article)"
+                class="pull-xs-right">
+            </app-favorite-button>
+    </div>
+    <a [routerLink]="['/','article',article.slug]" class="preview-link">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.description }}</p>
+        <div class="d-flex justify-content-between"><span>Read more...</span>
+            <ul class="tag-list float-right">
+                <li class="tag-default tag-pill tag-outline" *ngFor="let tag of article.tagList">
+                    {{ tag }}</li>
+            </ul>
+        </div>
+    </a>
+</div>
+<ul class="pagination">
+    <li class="page-item" *ngFor="let index of numPage" style="cursor: pointer;"
+        [ngClass]="numClicked == index ? 'active' : ''">
+        <a class="page-link" (click)="clickPage(index)">{{ index + 1 }}</a>
+    </li>
+</ul>

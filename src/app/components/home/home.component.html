@@ -1,0 +1,49 @@
+<div class="home-page">
+    <div class="banner">
+        <div class="container">
+            <h1 class="logo-font">conduit</h1>
+            <p>A place to share your knowledge.</p>
+        </div>
+    </div>
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="feed-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item" *ngIf="token" style="cursor: pointer;">
+                            <a class="nav-link" (click)="showYourFeed()" [class.active]="checkFeed == 1">Your Feed</a>
+                        </li>
+                        <li class="nav-item" style="cursor: pointer;">
+                            <a class="nav-link active" (click)="showGlobalFeed()" [class.active]="checkFeed == 2">Global
+                                Feed</a>
+                        </li>
+                        <li class="nav-item" style="cursor: pointer;" *ngIf="checkFeed == 3">
+                            <a class="nav-link" [class.active]="checkFeed === 3"># {{ tag }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- your feed -->
+                <div *ngIf="checkFeed == 1">
+                    <app-lists-articles [checkFeed]="checkFeed"></app-lists-articles>
+                </div>
+                <!-- global feed -->
+                <div *ngIf="checkFeed == 2">
+                    <app-lists-articles [checkFeed]="checkFeed"></app-lists-articles>
+                </div>
+                <!-- tag feed -->
+                <div *ngIf="checkFeed == 3">
+                    <app-lists-articles [checkFeed]="checkFeed" [tag]="tag"></app-lists-articles>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <p>Popular Tags</p>
+                    <div class="tag-list">
+                        <a class="tag-pill tag-default" *ngFor="let tag of tagList" style="cursor: pointer;"
+                            (click)="showTagFeed(tag)">{{ tag }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

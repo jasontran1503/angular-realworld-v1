@@ -1,0 +1,6 @@
+<button class="btn btn-sm" (click)="favoriteArticle()"
+[ngClass]="favorited == false ? 'btn-outline-primary' : 'btn-primary'">
+    <i class="ion-heart"></i>
+    &nbsp;
+    <ng-content></ng-content><span class="counter">{{ favoritesCount }}</span>
+</button>

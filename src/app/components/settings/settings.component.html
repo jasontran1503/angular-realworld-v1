@@ -1,0 +1,45 @@
+<div class="settings-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Your Settings</h1>
+                <ul class="error-messages" *ngIf="errors">
+                    <li *ngFor="let key of objectKeys(errors)">
+                        {{ key + ' ' + errors[key] }}
+                    </li>
+                </ul> 
+                <form [formGroup]="formSettings" *ngIf="token">
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control" type="text" placeholder="URL of profile picture"
+                            formControlName="imgURL">
+                            <img [src]="formSettings.value.imgURL" alt="">
+                            <!-- <img [src]="currentUser?.image" alt=""> -->
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Your Name"
+                            formControlName="userName">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea class="form-control form-control-lg" rows="8"
+                                placeholder="Short bio about you" formControlName="bio"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" placeholder="Email"
+                            formControlName="email">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="password" placeholder="Password"
+                            formControlName="password">
+                        </fieldset>
+                        <button type="button" class="btn btn-lg btn-primary pull-xs-right" (click)="updateUser()"> 
+                            Update Settings
+                        </button>
+                    </fieldset>
+                    <hr>
+                    <button class="btn btn-outline-danger" (click)="logOut()">Or click here to logout.</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
