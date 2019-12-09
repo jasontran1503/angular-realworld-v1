@@ -91,10 +91,10 @@ export class ArticleService {
 
   getComments(slug) {
     return this.httpClient.get(`${this.link}articles/${slug}/comments`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Token ' + localStorage.getItem('api_token')
-      }
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Authorization': 'Token ' + localStorage.getItem('api_token')
+      // }
     });
   }
 
