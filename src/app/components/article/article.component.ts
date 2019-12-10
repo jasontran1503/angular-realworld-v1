@@ -79,7 +79,6 @@ export class ArticleComponent implements OnInit {
   deleteArticle() {
     this.articleService.deleteArticle(this.articleClicked).subscribe(result => {
       // console.log(result);
-      confirm("Are you sure???")
       this.router.navigate(['home']);
     }, err => {
       console.log(err);
