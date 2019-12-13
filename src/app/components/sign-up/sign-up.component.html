@@ -7,7 +7,6 @@
                     <a [routerLink]="['/','login']">Have an account?</a>
                 </p>
                 <ul class="error-messages" *ngIf="errors">
-                    <!-- <li>{{ errors | json }}</li> -->
                     <li *ngFor="let key of objectKeys(errors)">
                         {{ key + ' ' + errors[key] }}
                     </li>

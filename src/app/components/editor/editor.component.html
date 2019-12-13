@@ -2,6 +2,17 @@
     <div class="container page">
         <div class="row">
             <div class="col-md-10 offset-md-1 col-xs-12">
+                <ul class="error-messages" *ngIf="errors">
+                    <li *ngFor="let errorTitle of errorsTitle">
+                        title {{  ' ' + errorTitle }}
+                    </li>
+                    <li *ngFor="let errorBody of errorsBody">
+                        body {{  ' ' + errorBody }}
+                    </li>
+                    <li *ngFor="let errorDes of errorsDes">
+                        description {{  ' ' + errorDes }}
+                    </li>
+                </ul>
                 <form [formGroup]="formEditor">
                     <fieldset>
                         <fieldset class="form-group">
@@ -21,13 +32,11 @@
                                 (keyup.enter)="enterTag($event)" formControlName="tags">
                             <div class="tag-list" *ngIf="slug">
                                 <span class="tag-default tag-pill" *ngFor="let tag of articleBySlugTags; index as i"><i
-                                        class="ion-close-round"
-                                        (click)="deleteTag(i);"></i>{{ tag }}</span>
+                                        class="ion-close-round" (click)="deleteTag(i);"></i>{{ tag }}</span>
                             </div>
                             <div class="tag-list">
                                 <span class="tag-default tag-pill" *ngFor="let tag of tagList; index as i"><i
-                                        class="ion-close-round"
-                                        (click)="deleteTag(i);"></i>{{ tag }}</span>
+                                        class="ion-close-round" (click)="deleteTag(i);"></i>{{ tag }}</span>
                             </div>
                         </fieldset>
                         <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="onEdit()">

@@ -16,6 +16,11 @@ export class EditorComponent implements OnInit {
   articleBySlug: Article;
   tagList: string[] = [];
   articleBySlugTags;
+  errors;
+  objectKeys = Object.keys;
+  errorsTitle: string[];
+  errorsBody: string[];
+  errorsDes: string[];
 
   constructor(private fb: FormBuilder, private articleService: ArticleService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
@@ -94,9 +99,13 @@ export class EditorComponent implements OnInit {
     this.articleService.createArticle(articleTitle, articleAbout, articleContent, tags).subscribe((result: Article) => {
       // console.log(result);
     }, err => {
-      console.log(err);
+      this.errors = err.error.errors;
+      this.errorsTitle = this.errors.title;
+      this.errorsBody = this.errors.body;
+      this.errorsDes = this.errors.description;
+      console.log(this.errorsTitle);
     });
-    this.router.navigate(['home']);
+    // this.router.navigate(['home']);
   }
 
   updateArticle() {
@@ -109,7 +118,7 @@ export class EditorComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.router.navigate(['/', 'article', this.slug]);
+    // this.router.navigate(['/', 'article', this.slug]);
   }
 
 }
