@@ -84,7 +84,7 @@ export class EditorComponent implements OnInit {
   }
 
   onEdit() {
-    if(this.slug) {
+    if (this.slug) {
       this.updateArticle();
     } else {
       this.createArticle();
@@ -98,14 +98,13 @@ export class EditorComponent implements OnInit {
     let tags = this.tagList;
     this.articleService.createArticle(articleTitle, articleAbout, articleContent, tags).subscribe((result: Article) => {
       // console.log(result);
+      this.router.navigate(['home']);
     }, err => {
       this.errors = err.error.errors;
       this.errorsTitle = this.errors.title;
       this.errorsBody = this.errors.body;
       this.errorsDes = this.errors.description;
-      console.log(this.errorsTitle);
     });
-    // this.router.navigate(['home']);
   }
 
   updateArticle() {
@@ -118,7 +117,7 @@ export class EditorComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    // this.router.navigate(['/', 'article', this.slug]);
+    this.router.navigate(['/', 'article', this.slug]);
   }
 
 }
